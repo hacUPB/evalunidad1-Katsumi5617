@@ -2,154 +2,140 @@
 // 000165673
 // samuel.kerguelen@upb.edu.co
 
- (STR)
-      @KBD
-      D=M
-      @84
-      D=D-A
-      @DLINE
-      D;JEQ
+(INICIO)
+            @16400
+            D=A
 
-      @KBD
-      D=M
-      @67
-      D=D-A
-      @CLEAR
-      D;JEQ
+            @pscreen
+            M=D
+
+            @256
+            D=A
+
+            @cont
+            M=D
+
+            @32
+            D=A
+            @cont2
+            M=D
+
+            @4096
+            D=A
+            @comienzo
+            M=D
+
+            @KBD
+            D=M
+            @84
+            D=D-A
+            @VERTICAL
+            D;JEQ
+
+            @KBD
+            D=M
+            @67
+            D=D-A
+            @SETCL
+            D;JEQ
+
+            @INICIO
+            0;JMP
+(VERTICAL)
+            @cont
+            D=M
+
+            @HORIZONTAL
+            D;JEQ
+
+            @256
+            D=A
+
+            @pscreen
+            A=M
+            M=D
+            @cont
+            M=M-1
+            @32
+            D=A
+            @pscreen
+            M=M+D
+
+            @VERTICAL
+            0;JMP
+
+(HORIZONTAL)
+            @comienzo
+            D=M
+
+            @SCREEN
+            A=A+D
+            M=-1
+
+            @comienzo
+            M=M+1
+
+            @cont2
+            M=M-1
+            D=M
+            @END
+            D;JEQ
+
+            @HORIZONTAL
+            0;JMP
+
+(SETCL)
+            @16384
+            D=A
+            @coord
+            M=D
+            @8192
+            D=A
+            @cont
+            M=D
+            @1
+            D=A
+            @salto
+            M=D
+            @color
+            M=0
+            @RECT
+            0;JMP
+
+(RECT)
+            @coord
+            D=M
+            @pscreen
+            M=D
+
+(PAINT)
+            @cont
+            D=M
+
+            @END
+            D;JEQ
 
 
-      @STR
-      0;JMP
 
-CLEAR
-     @16384
-     D=A
-     @coord1
-     M=D
-     @8192
-     D=A
-     @cont1
-     M=D
-     @1
-     D=A
-     @salto1
-     M=D
-     @color1
-     M=0
-     @DRAWR
-     0;JMP
+            @color
+            D=M
+            @pscreen
+            A=M
+            M=D
 
-(DLINE)
-    @16400 //16384 (pantalla completa) + fila * 32 + columna/16
-    D=A
-    @coord
-    M=D
-    @265
-    D=A
-    @cont
-    M=D
-    @32
-    D=A
-    @salto
-    M=D
-    @265
-    D=A
-    @color
-    M=D
+            @cont
+            M=M-1
 
+            @salto
+            D=M
 
-    @DRAW
-    0;JMP
+            @pscreen
+            M=M+D
 
-(DLINE)
-    
-    @20480
-    D=A
-    @coord1
-    M=D
-    @32
-    D=A
-    @cont1
-    M=D
-    @1
-    D=A
-    @salto1
-    M=D
-    @color1
-    M=-1
-
-
-    @DRAW
-    0;JMP
-
-(DRAW)
-    
-    @coord
-    D=M
-    @pscreen
-    M=D
-
-(DRAWL)
-
-    @cont
-    D=M
-    @CLINE
-    D;JEQ
-
-    @color
-    D=M
-    @pscreen
-    A=M
-    M=D
-
-    @cont
-    M=M-1
-
-    @salto
-    D=M
-
-    @pscreen
-    M=M+D
-
-    @DRAWL
-    0;JMP
-
-(DRAWR)
-
-    @coord1
-    D=M
-    @pscreen
-    M=D
-
-(DRAWR)
-
-    @cont1
-    D=M
-    @END
-    D;JEQ
-
-    @color1
-    D=M
-    @pscreen
-    A=M
-    M=D
-
-    @cont1
-    M=M-1
-
-    @salto1
-    D=M
-
-    @pscreen
-    M=M+D
-
-    @DRAWL
-    0;KMP
+            @PAINT
+            0;JMP
 
 (END)
-    @STR
-    0;JMP
-
-
-
+            @INICIO
+            0;JMP
 
