@@ -22,14 +22,14 @@
 
             @4096
             D=A
-            @comienzo
+            @C
             M=D
 
             @KBD
             D=M
             @84
             D=D-A
-            @VERTICAL
+            @V
             D;JEQ
 
             @KBD
@@ -45,7 +45,7 @@
             @cont
             D=M
 
-            @HORIZONTAL
+            @H
             D;JEQ
 
             @256
@@ -61,18 +61,18 @@
             @pscreen
             M=M+D
 
-            @VERTICAL
+            @V
             0;JMP
 
 (HORIZONTAL)
-            @comienzo
+            @c
             D=M
 
             @SCREEN
             A=A+D
             M=-1
 
-            @comienzo
+            @c
             M=M+1
 
             @cont2
@@ -81,7 +81,7 @@
             @END
             D;JEQ
 
-            @HORIZONTAL
+            @H
             0;JMP
 
 (SETCL)
@@ -136,6 +136,6 @@
             0;JMP
 
 (END)
-            @INICIO
+            @I
             0;JMP
 
